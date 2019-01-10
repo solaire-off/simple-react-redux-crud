@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import TextField from '@material-ui/core/TextField';
+import {Typography, Card, CardContent, Button} from '@material-ui/core';
+
 class PostForm extends Component {
   postSubmit = e => {
     e.preventDefault();
@@ -19,31 +22,39 @@ class PostForm extends Component {
     this.getTitle.value = '';
     this.getMessage.value = '';
   };
+
   render() {
-   return (
-      <div>
-        <h1>Create Post</h1>
-        <form onSubmit={this.postSubmit}>
-          <input
-            required
-            type="text"
-            ref={input => (this.getTitle = input)}
-            placeholder="Enter Post Title"
-          />
-          <br />
-          <br />
-          <textarea
-            required
-            rows="5"
-            cols="28"
-            placeholder="Enter Post Content"
-            ref={input => (this.getMessage = input)}
-          />
-          <br />
-          <br />
-          <button>Send</button>
-        </form>
-      </div>
+    return (
+      <Card>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h1">
+            Create Post
+          </Typography>
+          <form onSubmit={this.postSubmit}>
+            <TextField
+              id="outlined-name"
+              label="Enter Post Title"
+              inputRef={input => (this.getTitle = input)}
+              margin="dense"
+              variant="outlined"
+              fullWidth="true"
+            />
+            <TextField
+              id="outlined-content"
+              label="Enter Post Content"
+              inputRef={input => (this.getMessage = input)}
+              margin="dense"
+              variant="outlined"
+              multiline="true"
+              fullWidth="true"
+              rows="7"
+            />
+            <Button type="submit" variant="contained" color="primary">
+              Send
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
     );
   }
 }

@@ -6,6 +6,8 @@ import {createStore} from 'redux';
 import {Provider} from 'react-redux';
 
 import PostReducer from './reducers/postReducer';
+
+
 const store = createStore(PostReducer);
 
 ReactDOM.render(

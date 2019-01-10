@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Typography, Card, CardActions, CardContent, Button} from '@material-ui/core';
 
 class Post extends Component {
   postDelete = e => {
@@ -12,12 +13,22 @@ class Post extends Component {
   };
   render() {
     return (
-      <div>
-        <h2>{this.props.post.title}</h2>
-        <p>{this.props.post.message}</p>
-        <button onClick={this.postEdit}>Edit</button>
-        <button onClick={this.postDelete}>Delete</button>
-      </div>
+      <Card>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            {this.props.post.title}
+          </Typography>
+          <Typography component="p">{this.props.post.message}</Typography>
+        </CardContent>
+        <CardActions>
+          <Button onClick={this.postEdit} size="small" color="primary">
+            Edit
+          </Button>
+          <Button onClick={this.postDelete} size="small" color="primary">
+            Delete
+          </Button>
+        </CardActions>
+      </Card>
     );
   }
 }

@@ -1,5 +1,23 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {
+  Modal,
+  Typography,
+  Card,
+  CardContent,
+  Button,
+  TextField
+} from '@material-ui/core';
+
+var modalContentStyle = {
+  maxWidth: '600px',
+  margin: '0 auto',
+  width: '100%',
+  position: "absolute",
+  top: '50%',
+  left: '50%',
+  transform: `translate(-50%, -50%)`,
+};
 
 class PostEdit extends Component {
   editThisPost = e => {
@@ -14,30 +32,42 @@ class PostEdit extends Component {
   };
   render() {
     return (
-      <div>
-        <form onSubmit={this.editThisPost}>
-          <input
-            required
-            type="text"
-            defaultValue={this.props.post.title}
-            ref={input => (this.getTitle = input)}
-            placeholder="Enter Post Title"
-          />
-          <br />
-          <br />
-          <textarea
-            required
-            rows="5"
-            cols="28"
-            defaultValue={this.props.post.message}
-            ref={input => (this.getMessage = input)}
-            placeholder="Enter Post Content"
-          />
-          <br />
-          <br />
-          <button>Send</button>
-        </form>
-      </div>
+      <Modal open={true}>
+      <Card style={modalContentStyle}>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h1">
+            Edit Post
+          </Typography>
+          <form onSubmit={this.editThisPost}>
+            <TextField
+              required
+              id="outlined-name-edit"
+              label="Enter Post Title"
+              inputRef={input => (this.getTitle = input)}
+              defaultValue={this.props.post.title}
+              margin="dense"
+              variant="outlined"
+              fullWidth="true"
+            />
+            <TextField
+              required
+              id="outlined-content-edit"
+              label="Enter Post Contente"
+              inputRef={input => (this.getMessage = input)}
+              defaultValue={this.props.post.message}
+              margin="dense"
+              variant="outlined"
+              multiline="true"
+              rows="10"
+              fullWidth="true"
+            />
+            <Button type="submit" variant="contained" color="primary" >
+              Save
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
+      </Modal>
     );
   }
 }

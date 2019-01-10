@@ -2,23 +2,27 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Post from './Post';
 import PostEdit from './PostEdit';
+import {Grid, Fade} from '@material-ui/core';
 
 class PostList extends Component {
   render() {
     return (
-      <div>
-        <h1>PostList</h1>
-        {console.log(this.props.posts)}
+      <Grid container spacing={24}>
         {this.props.posts.map(post => (
-          <div key={post.id}>
-            {post.editing ? (
-              <PostEdit post={post} key={post.id} />
-            ) : (
-              <Post post={post} key={post.id} />
-            )}
-          </div>
+          <Fade in={true}>
+            <Grid key={post.id} item xs={12}>
+              {post.editing ? (
+                <div>
+                  <Post post={post} key={post.id} />
+                  <PostEdit post={post} key={post.id} />
+                </div>
+              ) : (
+                <Post post={post} key={post.id} />
+              )}
+            </Grid>
+          </Fade>
         ))}
-      </div>
+      </Grid>
     );
   }
 }
